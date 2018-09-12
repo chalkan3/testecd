@@ -27,7 +27,7 @@ namespace WebApplication1
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Isso é muito legal!");
+                await context.Response.WriteAsync("Merge!");
             });
         }
     }
