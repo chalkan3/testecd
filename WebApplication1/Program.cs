@@ -10,7 +10,7 @@ namespace WebApplication1
            public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
-                .UseUrls(urls: "http://localhost:3501")
+                .UseUrls("http://127.0.0.1:3501")
 
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
