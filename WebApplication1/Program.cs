@@ -7,19 +7,15 @@ namespace WebApplication1
 {
     public class Program
     {
-           public static void Main(string[] args)
+          public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseUrls("http://127.0.0.1:3501")
-
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                
+                .UseStartup<Startup>();
     }
   
 }
