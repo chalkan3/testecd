@@ -12,15 +12,19 @@ namespace WebApplication1
 {
     public class Program
     {
-        public static void Main(string[] args)
+           public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
-        }
+            var host = new WebHostBuilder()
+                .UseUrls(urls: "http://localhost:3501")
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
                 .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls(urls: "http://localhost:3501");
-    }
+                .UseApplicationInsights()
+                .Build();
+
+            host.Run();
+        }
+  
 }
