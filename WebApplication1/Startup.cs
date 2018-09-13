@@ -18,35 +18,13 @@ namespace WebApplication1
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CogtivePolicyOrigin",
-                    builder => builder.WithOrigins(
-                        "https://sistema.cogtive.com.br",
-                        "http://sistema.cogtive.com.br"
-                    )
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-                );
-            });
-
-            services.AddSingleton<IConfiguration>(_ => Configuration);
-            services.CoreDependencias();
-
-            services.Configure<GzipCompressionProviderOptions>(options => 
-                options.Level = CompressionLevel.Optimal
-            );
+           
             services.AddResponseCompression();
             services.AddResponseCaching(options =>
             {
                 options.UseCaseSensitivePaths = true;
                 options.MaximumBodySize = 1024;
             });
-
-            services.AddSingleton<HtmlEncoder>(
-                HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin,
-                    UnicodeRanges.CjkUnifiedIdeographs }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
